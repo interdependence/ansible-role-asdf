@@ -63,6 +63,8 @@ asdf_packages:
 
 To configure asdf without installing asdf core, `asdf_install` can be set to `false`.
 
+If `version` is omitted for a package, it will default to `latest`.
+
 Where `state` is defined in each role variable, the default value is `present`, and can be omitted. If `state` is set to `absent`, the corresponding item will be removed.
 
 ## Example Playbook
