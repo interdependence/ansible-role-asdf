@@ -1,0 +1,15 @@
+# Metadata
+
+---
+
+galaxy_info:
+  role_name: asdf
+  author: William Vandervalk
+  description: Configure asdf
+  license: MIT
+  platforms:
+    - name: Fedora
+      versions:
+        - all
+  galaxy_tags:
+    - asdf

@@ -1,0 +1,32 @@
+# Ensure asdf packages are configured
+
+---
+
+- name: Retrieve list of installed asdf packages
+  ansible.builtin.command:
+    cmd: asdf list
+  changed_when: false
+  register: asdf_installed_packages
+
+- name: Ensure asdf packages are installed
+  ansible.builtin.command:
+    cmd: 'asdf install {{ item.name }} {{ item.version | default("latest") }}'
+  changed_when: '"already installed" not in result.stdout'
+  register: result
+  when: >
+    item.state | default('present') != 'absent' and
+    item.name in asdf_installed_plugins.stdout
+  loop: '{{ asdf_packages }}'
+
+- name: Ensure asdf packages set to absent are uninstalled
+  ansible.builtin.command:
+    cmd: 'asdf uninstall {{ item.name }} {{ item.version if item.version is defined and item.version != "latest" }}'
+  when: item.state | default('present') == 'absent' and item.name in asdf_installed_packages.stdout
+  loop: '{{ asdf_packages }}'
+
+- name: Retrieve updated list of installed asdf packages
+  ansible.builtin.command:
+    cmd: asdf list
+  changed_when: false
+  register: asdf_installed_packages
+

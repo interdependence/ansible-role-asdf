@@ -1,0 +1,32 @@
+# Ensure asdf core is installed
+
+---
+
+- name: Ensure asdf dependencies are installed
+  ansible.builtin.package:
+    name: '{{ item }}'
+    state: present
+  become: true
+  loop:
+    - curl
+    - git
+
+- name: Ensure asdf is configured
+  ansible.builtin.git:
+    repo: https://github.com/asdf-vm/asdf.git
+    dest: ~/.asdf
+    single_branch: yes
+    version: '{{ asdf_version }}'
+
+- name: Ensure asdf is configured in bashrc
+  ansible.builtin.lineinfile:
+    path: ~/.bashrc
+    line: '{{ item }}'
+  loop:
+    - . $HOME/.asdf/asdf.sh
+    - . $HOME/.asdf/completions/asdf.bash
+
+- name: Ensure legacy version file is configured in asdfrc
+  ansible.builtin.lineinfile:
+    path: ~/.asdfrc
+    line: legacy_version_file = yes

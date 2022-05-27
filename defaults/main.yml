@@ -1,0 +1,26 @@
+# Default values for variables
+
+---
+
+# Enable or disable installation of asdf core
+asdf_install: true
+
+# Version of asdf to install
+asdf_version: master
+
+# List of dictionaries containing plugins
+asdf_plugins: []
+# - name: nodejs
+#   state: present
+#   url: https://github.com/asdf-vm/asdf-nodejs.git
+# - name: python
+#   state: present
+
+# List of dictionaries containing packages
+asdf_packages: []
+# - name: nodejs
+#   state: present
+#   version: latest
+# - name: python
+#   state: present
+#   version: latest

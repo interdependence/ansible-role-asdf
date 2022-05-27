@@ -1,0 +1,15 @@
+# Ensure asdf is configured
+
+---
+
+- include_tasks: install.yml
+  when: asdf_install
+
+- include_tasks: plugins.yml
+- include_tasks: packages.yml
+
+- name: Ensure asdf globals are configured
+  ansible.builtin.command:
+    cmd: 'asdf global {{ item.name }} {{ item.version | default("latest") }}'
+  when: item.state | default('present') != 'absent' and item.name in asdf_installed_packages.stdout
+  loop: '{{ asdf_packages }}'
