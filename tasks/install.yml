@@ -11,7 +11,7 @@
     - curl
     - git
 
-- name: Ensure asdf is configured
+- name: Ensure asdf core is installed
   ansible.builtin.git:
     repo: https://github.com/asdf-vm/asdf.git
     dest: ~/.asdf
@@ -21,12 +21,19 @@
 - name: Ensure asdf is configured in bashrc
   ansible.builtin.lineinfile:
     path: ~/.bashrc
+    create: true
     line: '{{ item }}'
   loop:
     - . $HOME/.asdf/asdf.sh
     - . $HOME/.asdf/completions/asdf.bash
 
+- name: Ensure bashrc is sourced
+  ansible.builtin.shell:
+    cmd: source ~/.bashrc
+  changed_when: false
+
 - name: Ensure legacy version file is configured in asdfrc
   ansible.builtin.lineinfile:
     path: ~/.asdfrc
+    create: true
     line: legacy_version_file = yes
