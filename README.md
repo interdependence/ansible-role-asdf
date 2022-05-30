@@ -65,7 +65,7 @@ To configure asdf without installing asdf core, `asdf_install` can be set to `fa
 
 If `version` is omitted for a package, it will default to `latest`.
 
-Where `state` is defined in each role variable, the default value is `present`, and can be omitted. If `state` is set to `absent`, the corresponding item will be removed.
+Where `state` is set to `present` in each role variable, the default value is `present`, and can be omitted. If `state` is set to `absent`, the corresponding item will be removed.
 
 ## Example Playbook
 
