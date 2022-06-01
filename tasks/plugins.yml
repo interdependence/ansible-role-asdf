@@ -27,4 +27,3 @@
   changed_when: false
   ignore_errors: true
   register: asdf_installed_plugins
-
