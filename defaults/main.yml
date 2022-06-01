@@ -8,7 +8,7 @@ asdf_install: true
 # Version of asdf to install
 asdf_version: master
 
-# List of dictionaries containing plugins
+# Plugins
 asdf_plugins: []
 # - name: nodejs
 #   state: present
@@ -16,7 +16,7 @@ asdf_plugins: []
 # - name: python
 #   state: present
 
-# List of dictionaries containing packages
+# Packages
 asdf_packages: []
 # - name: nodejs
 #   state: present
